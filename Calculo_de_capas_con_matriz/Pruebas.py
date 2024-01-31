@@ -1,30 +1,67 @@
-Matrices = []
+def multiplicar_matrices(matriz1, matriz2):
+   
+    filas1, columnas1 = len(matriz1), len(matriz1[0])
+    filas2, columnas2 = len(matriz2), len(matriz2[0])
 
-def pedir_matriz(filas, columnas):
-    matriz = []
-    for i in range(filas):
-        fila = []
-        for j in range(columnas):
-            valor = float(input(f"Ingrese el valor para la posición ({i + 1}, {j + 1}): "))
-            fila.append(valor)
-        matriz.append(fila)
-        Matrices.append(matriz)
+    # Verificar si las matrices pueden multiplicarse
+    if columnas1 != filas2:
+        raise ValueError("Las matrices no pueden multiplicarse debido a dimensiones incorrectas.")
+
+    # Inicializar la matriz de resultado con ceros
+    resultado = [[0 for _ in range(columnas2)] for _ in range(filas1)]
+    resultado_aux = [[0 for _ in range(columnas2)] for _ in range(filas1)]
+    
+    # Realizar la multiplicación
+    for i in range(filas1):
+        for j in range(columnas2):
+            for k in range(filas2):
+                resultado[i][j] += matriz1[i][k] * matriz2[k][j]
+                resultado_aux[i][j] += (matriz1[i][k] * matriz2[k][j])/2
+    
+    print("Resultado antes de la función:")
+    for fila in resultado_aux:
+        print(fila)
         
-    return matriz
+    return resultado
 
-# Pedir al usuario el número de filas y columnas de la matriz
-filas = int(input("Ingrese el número de filas: "))
-columnas = int(input("Ingrese el número de columnas: "))
 
-# Pedir la matriz al usuario
-matriz_ingresada = pedir_matriz(filas, columnas)
+def multiplicar_matrices_en_cadena(lista_de_matrices):
+    if len(lista_de_matrices) < 2:
+        raise ValueError(
+            "Se requieren al menos dos matrices para la multiplicación.")
 
-filas = int(input("Ingrese el número de filas: "))
-columnas = int(input("Ingrese el número de columnas: "))
+    resultado_final = lista_de_matrices[0]
 
-# Pedir la matriz al usuario
-matriz_ingresada = pedir_matriz(filas, columnas)
-# Mostrar la matriz ingresada
-print("Matriz ingresada:")
-for fila in Matrices:
-    print(fila)
+    for matriz in lista_de_matrices[1:]:
+        # Multiplicar por 2 cada elemento de la matriz resultante
+        resultado_final = [[2 * elemento for elemento in fila]
+                           for fila in resultado_final]
+
+        # Realizar la multiplicación con la siguiente matriz
+        resultado_final = multiplicar_matrices(resultado_final, matriz)
+        print("Resultado despues de la funcion de integración :")
+        for fila in resultado_final:
+            print(fila)
+    return resultado_final
+
+# Ejemplo de uso
+matrices_en_lista = [
+    [[-3, 1, 4, -2]],
+
+    [[44, 64],
+     [44, 64],
+     [52, 80],
+     [56, 84]]
+
+]
+
+
+# Multiplicar todas las matrices en la lista en cadena y multiplicar por 2 en cada iteración
+try:
+    resultado_final = multiplicar_matrices_en_cadena(matrices_en_lista)
+
+    print("Resultado Final:")
+    for fila in resultado_final:
+        print(fila)
+except ValueError as e:
+    print(f"Error: {e}")
