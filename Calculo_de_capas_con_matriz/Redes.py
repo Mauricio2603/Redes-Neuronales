@@ -5,8 +5,8 @@ def pedir_matriz(filas, columnas):
         fila = []
         for j in range(columnas):
             
-            valor = random.randint(1, 10)
-            #valor = float(input(f"Ingrese el valor para la posición ({i + 1}, {j + 1}): "))
+            #valor = random.randint(1, 10)
+            valor = float(input(f"Ingrese el valor para la posición ({i + 1}, {j + 1}): "))
             fila.append(valor)
         matriz.append(fila)
         
@@ -38,10 +38,10 @@ Matrices = []
 for i in range(capas + 1):
     print("Matriz: ", (i+1))
     # Pedir al usuario el número de filas y columnas de la matriz
-    #filas = int(input("Ingrese el número de filas: "))
-    #columnas = int(input("Ingrese el número de columnas: "))
-    filas = 5
-    columnas = 5
+    filas = int(input("Ingrese el número de filas: "))
+    columnas = int(input("Ingrese el número de columnas: "))
+    #filas = 5
+    #columnas = 5
 
     # Pedir la matriz al usuario
     matriz_ingresada = pedir_matriz(filas, columnas)
@@ -105,5 +105,3 @@ try:
         print(fila)
 except ValueError as e:
     print(f"Error: {e}")
-
-    
