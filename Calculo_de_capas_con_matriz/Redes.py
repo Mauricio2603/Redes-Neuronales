@@ -1,4 +1,8 @@
 import random
+import time
+
+# Guarda el tiempo de inicio
+inicio = time.time()
 def pedir_matriz(filas, columnas):
     matriz = []
     for i in range(filas):
@@ -17,8 +21,8 @@ def pedir_matriz(filas, columnas):
 capas = int(input("Digite el numero de capas: "))
 #Solicitamos la función de activacion
 
-funcion = input("Digite la función de activacion: ")
-#funcion = "2(x)"
+#funcion = input("Digite la función de activacion: ")
+funcion = "1(x)"
 
 # Ejemplo: Separar una cadena en dos partes usando un carácter específico
 
@@ -40,8 +44,8 @@ for i in range(capas + 1):
     # Pedir al usuario el número de filas y columnas de la matriz
     filas = int(input("Ingrese el número de filas: "))
     columnas = int(input("Ingrese el número de columnas: "))
-    #filas = 5
-    #columnas = 5
+    #filas = 98
+    #columnas = 98
 
     # Pedir la matriz al usuario
     matriz_ingresada = pedir_matriz(filas, columnas)
@@ -70,9 +74,9 @@ def multiplicar_matrices(matriz1, matriz2):
                 resultado[i][j] += matriz1[i][k] * matriz2[k][j]
                 resultado_aux[i][j] += (matriz1[i][k] * matriz2[k][j]) / float(parte1)
     
-    print("Resultado antes de la función:")
-    for fila in resultado_aux:
-        print(fila)
+    #print("Resultado antes de la función:")
+    #for fila in resultado_aux:
+     #   print(fila)
         
     return resultado
 
@@ -91,9 +95,9 @@ def multiplicar_matrices_en_cadena(lista_de_matrices):
 
         # Realizar la multiplicación con la siguiente matriz
         resultado_final = multiplicar_matrices(resultado_final, matriz)
-        print("Resultado despues de la funcion de integración :")
-        for fila in resultado_final:
-            print(fila)
+        #print("Resultado despues de la funcion de integración :")
+        #for fila in resultado_final:
+         #   print(fila)
     return resultado_final
 
 # Multiplicar todas las matrices en la lista en cadena y multiplicar por 2 en cada iteración
@@ -105,3 +109,10 @@ try:
         print(fila)
 except ValueError as e:
     print(f"Error: {e}")
+    
+fin = time.time()
+
+# Calcula la diferencia para obtener el tiempo total de ejecución
+tiempo_total = fin - inicio
+
+print(f"Tiempo de ejecución: {tiempo_total} segundos")
